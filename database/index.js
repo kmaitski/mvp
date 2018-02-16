@@ -14,12 +14,18 @@ const hikeSchema = mongoose.Schema({
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
-var test = new Hike({hikeName: 'Devil Gorge', bestTime: 55});
+// const save = (hike, time) => {
+//   let newHike = new Hike
+// }
 
-test.save(function() {
-  console.log('saved');
-});
 
-Hike.find((err, hikes) => {
-  console.log(hikes)
-});
+
+// var test = new Hike({hikeName: 'Devil Gorge', bestTime: 55});
+
+// test.save(function() {
+//   console.log('saved');
+// });
+
+// Hike.find((err, hikes) => {
+//   console.log(hikes)
+// });

@@ -24,6 +24,12 @@ exports.save = (hike, time, cb) => {
   })
 }
 
+exports.retrieveHikes = (cb) => {
+  Hike.find().exec(function(err, hikes) {
+    cb(hikes);
+  });
+}
+
 
 
 // var test = new Hike({hikeName: 'Devil Gorge', bestTime: 55});

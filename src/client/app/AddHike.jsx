@@ -26,9 +26,7 @@ class AddHike extends React.Component {
   }
 
   handleSubmit() {
-    $.post('/add', this.state, function() {
-      console.log('added');
-    })
+    this.props.addHike(this.state, this.props.handleGet);
   }
 
   render() {

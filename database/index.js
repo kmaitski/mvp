@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017');
 
 var db = mongoose.connection;
 
 // db.once('open', function() {
 //   console.log(connected);
 // });
+
+
 
 const hikeSchema = mongoose.Schema({
   hikeName: String,
@@ -19,6 +21,7 @@ exports.save = (hike, time, cb) => {
   newHike.save(function(err, hike) {
     Hike.find(function(err, hikes) {
       cb(hikes);
+      console.log(process.env.MONGOLAB_URI);
     });
     // console.log(hike);
   })

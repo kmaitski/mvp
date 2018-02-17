@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-debugger;
+const database = require('../database/index.js');
+;
 app.use(express.static(__dirname + '/../src/client/public'));
 
 // app.get('/', (req, res) => {
@@ -18,6 +19,7 @@ app.post('/add', (req, res) => {
     let hikeAndTime = chunk.toString().split('&');
     let hike = hikeAndTime[0].split('=')[1];
     let time = hikeAndTime[1].split('=')[1];
+    database.save(hike, time);
   })
   res.end('');
 })

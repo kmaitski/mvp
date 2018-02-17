@@ -14,9 +14,15 @@ const hikeSchema = mongoose.Schema({
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
-// const save = (hike, time) => {
-//   let newHike = new Hike
-// }
+exports.save = (hike, time) => {
+  let newHike = new Hike({hikeName: hike, bestTime: Number(time)});
+  newHike.save(function(err, hike) {
+    Hike.find(function(err, hikes) {
+      console.log(hikes);
+    });
+    // console.log(hike);
+  })
+}
 
 
 

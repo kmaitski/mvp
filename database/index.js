@@ -11,20 +11,28 @@ const hikeSchema = mongoose.Schema({
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
-exports.save = (hike, time, cb) => {
-  Hike.find({'hikeName': hike}).exec((err, hike) => {
-    console.log(hike);
+exports.save = (name, time, cb) => {
+  Hike.find({'hikeName': name}).exec((err, hike) => {
+    if (hike.length) {
+      hike = hike.pop();
+      hike.set({hikeName: name, bestTime: time, update: new Date}).save(() => {
+        exports.retrieveHikes(hikes => {
+          cb(hikes);
+        });
+      });
+    } else {
+      let newHike = new Hike({
+        hikeName: name,
+        bestTime: Number(time),
+        update: new Date
+      });
+      newHike.save(function(err, hike) {
+        exports.retrieveHikes( hikes => {
+          cb(hikes);
+        });
+      });
+    }
   })
-  let newHike = new Hike({
-    hikeName: hike,
-    bestTime: Number(time),
-    update: new Date
-  });
-  newHike.save(function(err, hike) {
-    exports.retrieveHikes( hikes => {
-      cb(hikes);
-    });
-  });
 }
 
 exports.retrieveHikes = (cb) => {

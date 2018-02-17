@@ -14,11 +14,11 @@ const hikeSchema = mongoose.Schema({
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
-exports.save = (hike, time) => {
+exports.save = (hike, time, cb) => {
   let newHike = new Hike({hikeName: hike, bestTime: Number(time)});
   newHike.save(function(err, hike) {
     Hike.find(function(err, hikes) {
-      console.log(hikes);
+      cb(hikes);
     });
     // console.log(hike);
   })

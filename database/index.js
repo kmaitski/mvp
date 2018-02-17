@@ -5,22 +5,30 @@ var db = mongoose.connection;
 
 const hikeSchema = mongoose.Schema({
   hikeName: String,
-  bestTime: Number
+  bestTime: Number,
+  update: {type: Date, default: Date.now}
 });
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
 exports.save = (hike, time, cb) => {
-  let newHike = new Hike({hikeName: hike, bestTime: Number(time)});
+  Hike.find({'hikeName': hike}).exec((err, hike) => {
+    console.log(hike);
+  })
+  let newHike = new Hike({
+    hikeName: hike,
+    bestTime: Number(time),
+    update: new Date
+  });
   newHike.save(function(err, hike) {
-    Hike.find(function(err, hikes) {
+    exports.retrieveHikes( hikes => {
       cb(hikes);
     });
   });
 }
 
 exports.retrieveHikes = (cb) => {
-  Hike.find().exec(function(err, hikes) {
+  Hike.find().sort([['update', -1]]).exec(function(err, hikes) {
     cb(hikes);
   });
 }

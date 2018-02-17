@@ -24,11 +24,7 @@ class App extends React.Component {
 
   getHikes(cb) {
     $.get('/fetch', function(hikes) {
-      // console.log(hikes);
       cb(hikes);
-      // this.setState({
-      //   hikes: hikes
-      // });
     });
   }
 
@@ -41,7 +37,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <p> Hike Tracker</p>
+        <h1> Hike Tracker</h1>
         <AddHike addHike={this.addHike} handleGet={this.handleGet}/>
         <HikeList hikes={this.state.hikes}/>
       </div>

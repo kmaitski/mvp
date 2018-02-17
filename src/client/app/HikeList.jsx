@@ -3,10 +3,13 @@ import HikeEntry from './HikeEntry.jsx';
 
 const HikeList = (props) => (
   <div>
-    {props.hikes.length}
+
+    <h4>You have logged {props.hikes.length} hikes.  Great job! Keep it up!</h4>
+    <div>
     {props.hikes.map((hike, i) => {
       return <HikeEntry key={i} hike={hike}/>
     })}
+    </div>
   </div>
 )
 

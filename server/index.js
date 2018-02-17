@@ -25,6 +25,15 @@ app.post('/add', (req, res) => {
 app.get('/reset', (req, res) => {
   database.reset();
   res.end('');
-})
+});
+
+app.post('/delete', (req, res) => {
+  req.on('data', function(chunk) {
+    let hikeToDelete = chunk.toString();
+    database.delete(hikeToDelete, function(hikes) {
+      res.send(hikes);
+    });
+  });
+});
 
 app.listen(process.env.PORT || 3000);

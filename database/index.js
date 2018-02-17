@@ -46,3 +46,11 @@ exports.reset = () => {
     if (err) {console.log(err);}
   });
 }
+
+exports.delete = (hikeToDelete, cb) => {
+  Hike.remove({hikeName: hikeToDelete}, () => {
+    exports.retrieveHikes(hikes => {
+      cb(hikes);
+    });
+  });
+}

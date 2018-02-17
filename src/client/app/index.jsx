@@ -8,12 +8,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hikes: []
+      hikes: [],
+      deletedHike: ''
     };
     this.getHikes = this.getHikes.bind(this);
     this.handleChangeToHikes = this.handleChangeToHikes.bind(this);
     this.addHike = this.addHike.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.handleSingleDelete = this.handleSingleDelete.bind(this);
     this.getHikes(this.handleChangeToHikes);
   }
 
@@ -41,13 +43,24 @@ class App extends React.Component {
     });
   }
 
+  handleSingleDelete(e) {
+    let hikeToDelete = e.target.className;
+    $.post('/delete', hikeToDelete, (hikes) => {
+      this.handleChangeToHikes(hikes);
+    })
+  }
+
   render () {
     return (
       <div>
         <h1> Hike Tracker</h1>
-        <AddHike addHike={this.addHike} handleGet={this.handleChangeToHikes}/>
+        <AddHike addHike={this.addHike}
+                 handleGet={this.handleChangeToHikes}
+        />
         <button onClick={this.handleResetClick}>Reset hikes</button>
-        <HikeList hikes={this.state.hikes}/>
+        <HikeList hikes={this.state.hikes}
+                  handleSingleDelete={this.handleSingleDelete}
+        />
       </div>
     );
   }

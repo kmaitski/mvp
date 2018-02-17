@@ -7,7 +7,10 @@ const HikeList = (props) => (
     <h4>You have logged {props.hikes.length} hikes.  Great job! Keep it up!</h4>
     <div>
     {props.hikes.map((hike, i) => {
-      return <HikeEntry key={i} hike={hike}/>
+      return <HikeEntry key={i}
+                        hike={hike}
+                        handleSingleDelete={props.handleSingleDelete}
+             />
     })}
     </div>
   </div>

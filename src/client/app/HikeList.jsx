@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HikeList = (props) => {
+const HikeList = (props) => {i
   return (
     <div>
       {props.hikes.length}

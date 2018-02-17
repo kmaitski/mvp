@@ -38,9 +38,12 @@ class App extends React.Component {
   }
 
   handleResetClick(cb) {
-    $.get('/reset', () => {
-      this.handleChangeToHikes([]);
-    });
+    var test = prompt('Warning this will delete all data. Are you sure you want to proceed?');
+    if (test !== null) {
+      $.get('/reset', () => {
+        this.handleChangeToHikes([]);
+      });
+    }
   }
 
   handleSingleDelete(e) {

@@ -1,15 +1,17 @@
 import React from 'react';
 
 const HikeEntry = (props) => (
-  <div>
-    <span>Hike name: {props.hike.hikeName}     </span>
-    <span>Time: {props.hike.bestTime}     </span>
-    <a href="#"
-       onClick={props.handleSingleDelete}
-       className={props.hike.hikeName}
-       >Delete Entry
-    </a>
-  </div>
+  <tr>
+    <td>{props.hike.hikeName}</td>
+    <td>{props.hike.bestTime}</td>
+    <td>
+      <a href="#"
+         onClick={props.handleSingleDelete}
+         className={props.hike.hikeName}>
+         Delete
+      </a>
+    </td>
+  </tr>
 )
 
 export default HikeEntry;

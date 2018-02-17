@@ -11,12 +11,13 @@ class App extends React.Component {
       hikes: []
     };
     this.getHikes = this.getHikes.bind(this);
-    this.handleGet = this.handleGet.bind(this);
+    this.handleChangeToHikes = this.handleChangeToHikes.bind(this);
     this.addHike = this.addHike.bind(this);
-    this.getHikes(this.handleGet);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.getHikes(this.handleChangeToHikes);
   }
 
-  handleGet(hikes) {
+  handleChangeToHikes(hikes) {
     this.setState({
       hikes: hikes
     });
@@ -34,11 +35,18 @@ class App extends React.Component {
     });
   }
 
+  handleResetClick(cb) {
+    $.get('/reset', () => {
+      this.handleChangeToHikes([]);
+    });
+  }
+
   render () {
     return (
       <div>
         <h1> Hike Tracker</h1>
-        <AddHike addHike={this.addHike} handleGet={this.handleGet}/>
+        <AddHike addHike={this.addHike} handleGet={this.handleChangeToHikes}/>
+        <button onClick={this.handleResetClick}>Reset hikes</button>
         <HikeList hikes={this.state.hikes}/>
       </div>
     );

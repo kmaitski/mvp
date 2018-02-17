@@ -3,12 +3,6 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017');
 
 var db = mongoose.connection;
 
-// db.once('open', function() {
-//   console.log(connected);
-// });
-
-
-
 const hikeSchema = mongoose.Schema({
   hikeName: String,
   bestTime: Number
@@ -21,10 +15,8 @@ exports.save = (hike, time, cb) => {
   newHike.save(function(err, hike) {
     Hike.find(function(err, hikes) {
       cb(hikes);
-      console.log(process.env.MONGOLAB_URI);
     });
-    // console.log(hike);
-  })
+  });
 }
 
 exports.retrieveHikes = (cb) => {
@@ -33,14 +25,8 @@ exports.retrieveHikes = (cb) => {
   });
 }
 
-
-
-// var test = new Hike({hikeName: 'Devil Gorge', bestTime: 55});
-
-// test.save(function() {
-//   console.log('saved');
-// });
-
-// Hike.find((err, hikes) => {
-//   console.log(hikes)
-// });
+exports.reset = () => {
+  Hike.remove({}).exec(function(err){
+    if (err) {console.log(err);}
+  });
+}

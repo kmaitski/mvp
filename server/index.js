@@ -20,6 +20,11 @@ app.post('/add', (req, res) => {
       res.send(hikes);
     });
   });
+});
+
+app.get('/reset', (req, res) => {
+  database.reset();
+  res.end('');
 })
 
 app.listen(process.env.PORT || 3000);

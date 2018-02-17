@@ -20,7 +20,7 @@ app.post('/add', (req, res) => {
     let hike = hikeAndTime[0].split('=')[1];
     let time = hikeAndTime[1].split('=')[1];
     database.save(hike, time, function(hikes) {
-      console.log(hikes);
+      console.log(1);
     });
   })
   res.end('');

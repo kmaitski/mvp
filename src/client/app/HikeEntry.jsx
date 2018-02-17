@@ -2,7 +2,8 @@ import React from 'react';
 
 const HikeEntry = (props) => (
   <div>
-    <span>Test</span>
+    <span>Hike name: {props.hike.hikeName}     </span>
+    <span>Time: {props.hike.bestTime}</span>
   </div>
 )
 

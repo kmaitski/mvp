@@ -19,7 +19,7 @@ app.post('/add', (req, res) => {
     let hikeAndTime = chunk.toString().split('&');
     let hike = hikeAndTime[0].split('=')[1];
     let time = hikeAndTime[1].split('=')[1];
-    database.save(hike, timem function(hikes) {
+    database.save(hike, time, function(hikes) {
       console.log(hikes);
     });
   })

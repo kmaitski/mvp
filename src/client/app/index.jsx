@@ -38,7 +38,7 @@ class App extends React.Component {
   }
 
   handleResetClick(cb) {
-    var test = prompt('Warning this will delete all data. Are you sure you want to proceed?');
+    let test = prompt('Warning this will delete all data. Are you sure you want to proceed?');
     if (test !== null) {
       $.get('/reset', () => {
         this.handleChangeToHikes([]);
@@ -47,10 +47,13 @@ class App extends React.Component {
   }
 
   handleSingleDelete(e) {
-    let hikeToDelete = e.target.className;
-    $.post('/delete', hikeToDelete, (hikes) => {
-      this.handleChangeToHikes(hikes);
-    })
+    let test = prompt('Warning this will delete this entry.  Are you sure this is what you want?');
+    if (test !== null) {
+      let hikeToDelete = e.target.className;
+      $.post('/delete', hikeToDelete, (hikes) => {
+        this.handleChangeToHikes(hikes);
+      });
+    }
   }
 
   render () {

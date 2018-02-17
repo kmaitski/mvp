@@ -6,10 +6,12 @@ class AddHike extends React.Component {
     super(props);
     this.state = {
       hike: '',
-      time: ''
+      time: '',
+      location: ''
     };
     this.handleHikeChange = this.handleHikeChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -22,6 +24,12 @@ class AddHike extends React.Component {
   handleTimeChange(e) {
     this.setState({
       time: e.target.value
+    });
+  }
+
+  handleLocationChange(e) {
+    this.setState({
+      location: e.target.value
     });
   }
 
@@ -40,6 +48,10 @@ class AddHike extends React.Component {
           <label>
             Hike time:
             <input type="text" onChange={this.handleTimeChange} />
+          </label>
+          <label>
+            Location:
+            <input type="text" onChange={this.handleLocationChange} />
           </label>
           <button type="button" onClick={this.handleSubmit}>Submit</button>
         </div>

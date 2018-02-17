@@ -10,6 +10,7 @@ const HikeList = (props) => (
         <tr>
           <th>Hike Name</th>
           <th>Time</th>
+          <th>Location</th>
           <th>Delete</th>
         </tr>
         {props.hikes.map((hike, i) => {

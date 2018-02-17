@@ -6,12 +6,13 @@ var db = mongoose.connection;
 const hikeSchema = mongoose.Schema({
   hikeName: String,
   bestTime: Number,
+  location: String,
   update: {type: Date, default: Date.now}
 });
 
 const Hike = mongoose.model('Hike', hikeSchema);
 
-exports.save = (name, time, cb) => {
+exports.save = (name, time, location, cb) => {
   Hike.find({'hikeName': name}).exec((err, hike) => {
     if (hike.length) {
       hike = hike.pop();
@@ -24,6 +25,7 @@ exports.save = (name, time, cb) => {
       let newHike = new Hike({
         hikeName: name,
         bestTime: Number(time),
+        location: location,
         update: new Date
       });
       newHike.save(function(err, hike) {

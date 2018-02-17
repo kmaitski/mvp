@@ -4,6 +4,7 @@ const HikeEntry = (props) => (
   <tr>
     <td>{props.hike.hikeName}</td>
     <td>{props.hike.bestTime}</td>
+    <td>{props.hike.location}</td>
     <td>
       <a href="#"
          onClick={props.handleSingleDelete}

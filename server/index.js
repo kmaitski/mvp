@@ -13,10 +13,12 @@ app.get('/fetch', (req, res) =>{
 
 app.post('/add', (req, res) => {
   req.on('data', function(chunk) {
-    let hikeAndTime = chunk.toString().split('&');
-    let hike = hikeAndTime[0].split('=')[1];
-    let time = hikeAndTime[1].split('=')[1];
-    database.save(hike, time, function(hikes) {
+    let hikeAndTimeAndLocation = chunk.toString().split('&');
+    console.log(hikeAndTimeAndLocation);
+    let hike = hikeAndTimeAndLocation[0].split('=')[1];
+    let time = hikeAndTimeAndLocation[1].split('=')[1];
+    let location = hikeAndTimeAndLocation[2].split('=')[1];
+    database.save(hike, time, location, function(hikes) {
       res.send(hikes);
     });
   });
